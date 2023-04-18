@@ -1,7 +1,47 @@
 .spacer {
   flex: 1 1 auto;
+  margin-top: 19px;
 }
 
-.sideNavR{
-  background-color: #F0131E;
+.editable {
+  min-height: 100vh;
+  width: fit-content;
+  position: sticky;
+  top: 0;
+}
+
+.sideNavR {
+  background-color: #f0131e;
+}
+
+.barra {
+  height: 100%;
+  background-color: #f0131e;
+}
+
+.example-form-field {
+  width: 200px;
+}
+
+.subTitle {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+}
+
+.mat-drawer-inner-container {
+  overflow: hidden;
+}
+
+mat-sidenav-content {
+  flex-direction: row !important;
+  display: flex !important;
+}
+
+.mat-drawer-content {
+  flex-direction: row !important;
+  display: flex !important;
+}
+.prueba{
+  display: flex;
 }
