@@ -1,1 +1,41 @@
-<p>perfil works!</p>
+<ng-template #cargando>
+  <mat-grid-list cols="1">
+    <mat-grid-tile>
+      <mat-spinner color="warn"></mat-spinner>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-template>
+
+<div *ngIf="resultadoHeroe; else cargando" class="grid mt-2 p-2">
+  <mat-card class="col-1 sm:col-6 pr-2">
+    <img [src]="rutaImagen" alt="" />
+  </mat-card>
+  <mat-card
+    class="col-6 sm:col-6 pl-2"
+    [ngStyle]="{ 'border-left-color': 'red', 'border-left-width': '5px' }"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ resultadoHeroe.name | uppercase }}</mat-card-title>
+      <mat-card-subtitle>Descripción:</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="mb-3">
+      {{ resultadoHeroe.description | validarDesc }}
+    </mat-card-content>
+    <mat-divider class="w-7 justify-content-center"></mat-divider>
+
+    <mat-card-footer class="mt-3">
+      <p><strong>Comics: </strong></p>
+
+      <ul>
+        <li *ngFor="let item of resultadoHeroe.series.items">
+          <a href="{{item.resourceURI}}{{api}}">
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+    </mat-card-footer>
+    <button mat-button color="warn" class="mt-7" (click)="goBack()">
+      Volver
+    </button>
+  </mat-card>
+</div>

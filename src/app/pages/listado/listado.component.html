@@ -1,11 +1,16 @@
+<ng-template #cargando>
+  <mat-grid-list cols="1">
+    <mat-grid-tile>
+      <mat-spinner color="warn"></mat-spinner>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-template>
+
 <h1 class="title">Listado de heroes</h1>
 <mat-divider></mat-divider>
 
-<div class="grid bm-8 p-2">
-  <div
-    *ngFor="let heroe of heroes!.data.results"
-    class="col-12 sm:col-6 md:col-6 xl:col-3"
-  >
+<div *ngIf="datos; else cargando" class="grid bm-8 p-2">
+  <div *ngFor="let heroe of datos" class="col-12 sm:col-6 md:col-6 xl:col-3">
     <mat-card>
       <img
         [src]="heroe.thumbnail.path + '.' + heroe.thumbnail.extension"
@@ -23,12 +28,38 @@
         <button
           mat-button
           mat-raised
-          color="warn"
-          [routerLink]="['/perfil']"
+          [ngStyle]="{ 'background-color': '#f0131e' }"
+          [routerLink]="['/perfil/', heroe.id]"
         >
           Ver más
         </button>
       </mat-card-actions>
     </mat-card>
+  </div>
+  <div class="grid mt-3 p-2 w-full justify-content-center">
+    <div class="xl:col-1 md:col-1 sm:col-1 col-1 justify-content-end flex">
+      <button
+        *ngIf="mostrarBotonAnterior()"
+        mat-button
+        mat-raised
+        (click)="passPage(-1)"
+        [routerLink]="['/listado/', numPage - 1]"
+      >
+        <mat-icon>arrow_back</mat-icon>
+        Anterior
+      </button>
+    </div>
+    <div class="xl:col-1 md:col-1 sm:col-1 col-1 justify-content-center">
+      <button
+        *ngIf="mostrarBotonAvanzar()"
+        mat-button
+        mat-raised
+        (click)="passPage(+1)"
+        [routerLink]="['/listado/', numPage + 1]"
+      >
+        Siguiente
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

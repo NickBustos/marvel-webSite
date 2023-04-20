@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 
+
+//import { ValidarDescPipe } from './pipes/validar-desc.pipe';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

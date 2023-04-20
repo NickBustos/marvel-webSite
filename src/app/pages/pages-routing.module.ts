@@ -8,17 +8,17 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'listado',
+        path: 'listado/:page',
         component: ListadoComponent,
       },
       {
-        path: 'perfil',
+        path: 'perfil/:id',
         component: PerfilComponent,
       },
-      // {
-      //   path: '**',
-      //   redirectTo: 'perfil',
-      // },
+      {
+        path: '**',
+        redirectTo: 'listado/0',
+      },
     ],
   },
 ];
