@@ -7,11 +7,13 @@
 </ng-template>
 
 <div *ngIf="resultadoHeroe; else cargando" class="grid mt-2 p-2">
-  <mat-card class="col-1 sm:col-6 pr-2">
+  <mat-card
+    class="mat-mdc-card mdc-card xl:col-6 lg:col-6 md:col-6 sm:col-10 col-10 pr-2"
+  >
     <img [src]="rutaImagen" alt="" />
   </mat-card>
   <mat-card
-    class="col-6 sm:col-6 pl-2"
+    class="mat-mdc-card mdc-card xl:col-6 lg:col-6 md:col-6 sm:col-10 col-10 pr-2"
     [ngStyle]="{ 'border-left-color': 'red', 'border-left-width': '5px' }"
   >
     <mat-card-header>
@@ -28,7 +30,7 @@
 
       <ul>
         <li *ngFor="let item of resultadoHeroe.series.items">
-          <a href="{{item.resourceURI}}{{api}}">
+          <a href="{{ item.resourceURI }}{{ api }}">
             {{ item.name }}
           </a>
         </li>
