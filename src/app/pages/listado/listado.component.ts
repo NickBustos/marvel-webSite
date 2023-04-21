@@ -27,6 +27,10 @@ export class ListadoComponent implements OnInit {
   }
 
   loadHeroes(page: number) {
+    if (page > 55 || page < 0) {
+      window.location.href = './error';
+      return;
+    }
     this.marvelService.getHeroes(page * 28).subscribe((heroes) => {
       this.heroes = heroes;
       this.datos = heroes.data.results;
@@ -53,44 +57,3 @@ export class ListadoComponent implements OnInit {
     return true;
   }
 }
-
-// import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute } from '@angular/router';
-// import { Result } from 'src/app/interfaces/marvel.interface';
-// import { MarvelService } from 'src/app/services/marvel.service';
-// import { switchMap } from 'rxjs/operators';
-
-// @Component({
-//   selector: 'app-listado',
-//   templateUrl: './listado.component.html',
-//   styleUrls: ['./listado.component.css'],
-// })
-// export class ListadoComponent implements OnInit {
-//   public datos: Result[] = [];
-//   public numPage!: number;
-
-//   constructor(
-//     private marvelService: MarvelService,
-//     private route: ActivatedRoute
-//   ) {}
-
-//   ngOnInit() {
-//     this.numPage = 0;
-//     // Inicializa numPage en 0
-//     this.route.params
-//       .pipe(
-//         switchMap((params) =>
-//           this.marvelService.getHeroes(+params['page'] * 28)
-//         )
-//       )
-//       .subscribe((heroes) => {
-//         // Actualiza los datos de la lista de héroes
-//         this.datos = heroes.data.results;
-//       });
-//   }
-
-//   passPage(num: number) {
-//     // Actualiza la página actual sumando el valor de num
-//     this.numPage += num;
-//   }
-// }

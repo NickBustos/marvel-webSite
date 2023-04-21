@@ -44,7 +44,7 @@ export class SidebarComponent {
     {
       label: 'Listado',
       icon: 'circle',
-      url: 'listado',
+      url: 'listado/0',
     },
   ];
 }
