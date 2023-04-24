@@ -21,10 +21,19 @@ const routes: Routes = [
         component: ErrorComponent,
       },
       {
+        path: '',
+        redirectTo: 'listado/0',
+        pathMatch: 'full',
+      },
+      {
         path: '**',
         redirectTo: 'error',
       },
     ],
+  },
+  {
+    path: '**',
+    redirectTo: 'listado/0',
   },
 ];
 

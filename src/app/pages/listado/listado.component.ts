@@ -27,7 +27,7 @@ export class ListadoComponent implements OnInit {
   }
 
   loadHeroes(page: number) {
-    if (page > 55 || page < 0) {
+    if (page > 55 || page < 0 || isNaN(page)) {
       window.location.href = './error';
       return;
     }
