@@ -10,6 +10,8 @@ import { MarvelService } from 'src/app/services/marvel.service';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
+  title = 'marvelPage';
+
   events: string[] = [];
   opened: boolean = true;
   public selectedHero!: Result;
@@ -42,9 +44,14 @@ export class SidebarComponent {
 
   sideNavItems = [
     {
-      label: 'Listado',
+      label: 'Heroes',
       icon: 'circle',
       url: 'listado/0',
+    },
+    {
+      label: 'Comics',
+      icon: 'circle',
+      url: 'comics/0',
     },
   ];
 }

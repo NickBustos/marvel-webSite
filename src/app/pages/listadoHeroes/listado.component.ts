@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Data, Heroe, Result } from 'src/app/interfaces/marvel.interface';
+import { Heroe, Result } from 'src/app/interfaces/marvel.interface';
 import { MarvelService } from 'src/app/services/marvel.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { MarvelService } from 'src/app/services/marvel.service';
   styleUrls: ['./listado.component.css'],
 })
 export class ListadoComponent implements OnInit {
-  public heroes: Heroe | null = null;
+  // public heroes: Heroe | null = null;
   public datos: Result[] = [];
   public numPage!: number;
 
@@ -24,6 +24,7 @@ export class ListadoComponent implements OnInit {
       this.numPage = params['page'] ? +params['page'] : 0;
       this.loadHeroes(this.numPage);
     });
+    console.log('ngOnInit')
   }
 
   loadHeroes(page: number) {
@@ -32,9 +33,10 @@ export class ListadoComponent implements OnInit {
       return;
     }
     this.marvelService.getHeroes(page * 28).subscribe((heroes) => {
-      this.heroes = heroes;
+      // this.heroes = heroes;
       this.datos = heroes.data.results;
     });
+    console.log('LoadHeroes')
   }
 
   passPage(num: number) {

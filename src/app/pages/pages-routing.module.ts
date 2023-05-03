@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListadoComponent } from './listado/listado.component';
+import { ListadoComponent } from './listadoHeroes/listado.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ErrorComponent } from './404/error/error.component';
+import { ListadoComicsComponent } from './listado-comics/listado-comics.component';
+import { PerfilComicComponent } from './perfil-comic/perfil-comic.component';
 
 const routes: Routes = [
   {
@@ -17,9 +19,18 @@ const routes: Routes = [
         component: PerfilComponent,
       },
       {
+        path: 'perfil-comic/:id',
+        component: PerfilComicComponent,
+      },
+      {
+        path: 'comics/:page',
+        component: ListadoComicsComponent,
+      },
+      {
         path: 'error',
         component: ErrorComponent,
       },
+
       {
         path: '',
         redirectTo: 'listado/0',

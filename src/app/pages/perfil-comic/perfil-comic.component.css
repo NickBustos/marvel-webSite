@@ -1,0 +1,15 @@
+:host {
+    width: 100%;
+    margin-top: 70px;
+  }
+  
+  .div {
+    border-top-color: #f0131e;
+    border-top-width: 5px;
+    border-radius: 4px;
+  }
+  a {
+    text-decoration: none;
+    color: #6a6a6a;
+  }
+  

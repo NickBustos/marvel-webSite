@@ -6,21 +6,22 @@
   </mat-grid-list>
 </ng-template>
 
-<h1 class="title">Listado de heroes</h1>
+<h1 class="title">Listado de comics</h1>
 <mat-divider></mat-divider>
 
 <div *ngIf="datos; else cargando" class="grid bm-8 p-2">
-  <div *ngFor="let heroe of datos" class="col-10 sm:col-6 md:col-6 xl:col-3">
+  <div *ngFor="let comic of datos" class="col-10 sm:col-6 md:col-6 xl:col-3">
     <mat-card>
       <img
-        [src]="heroe.thumbnail.path + '.' + heroe.thumbnail.extension"
+        *ngIf="comic.thumbnail"
+        [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension"
         alt=""
       />
       <mat-card-content class="mb-2"> </mat-card-content>
       <mat-card-header
         class="align-items-center justify-content-center card-container"
       >
-        <mat-card-title>{{ heroe.name }}</mat-card-title>
+        <mat-card-title>{{ comic.title }}</mat-card-title>
       </mat-card-header>
       <mat-card-actions
         class="align-items-center justify-content-center card-container"
@@ -29,7 +30,7 @@
           mat-button
           mat-raised
           [ngStyle]="{ 'background-color': '#f0131e' }"
-          [routerLink]="['/perfil/', heroe.id]"
+          [routerLink]="['/perfil-comic/', comic.id]"
         >
           Ver más
         </button>
@@ -43,7 +44,7 @@
         mat-button
         mat-raised
         (click)="passPage(-1)"
-        [routerLink]="['/listado/', numPage - 1]"
+        [routerLink]="['/comics/', numPage - 1]"
       >
         <mat-icon>arrow_back</mat-icon>
         Anterior
@@ -55,9 +56,9 @@
         mat-button
         mat-raised
         (click)="passPage(+1)"
-        [routerLink]="['/listado/', numPage + 1]"
+        [routerLink]="['/comics/', numPage + 1]"
       >
-        Siguiente
+        <span> Siguiente </span>
         <mat-icon>arrow_forward</mat-icon>
       </button>
     </div>
