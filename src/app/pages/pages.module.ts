@@ -10,9 +10,19 @@ import { ErrorComponent } from './404/error/error.component';
 import { ListadoComicsComponent } from './listado-comics/listado-comics.component';
 import { PerfilComicComponent } from './perfil-comic/perfil-comic.component';
 import { ValidarAutores } from '../pipes/validar-autores.pipe';
+import { SeriesComponent } from './series/series.component';
 
 @NgModule({
-  declarations: [ListadoComponent, PerfilComponent, ValidarAutores, ValidarDescPipe, ErrorComponent, ListadoComicsComponent, PerfilComicComponent],
+  declarations: [
+    ListadoComponent,
+    PerfilComponent,
+    ValidarAutores,
+    ValidarDescPipe,
+    ErrorComponent,
+    ListadoComicsComponent,
+    PerfilComicComponent,
+    SeriesComponent,
+  ],
   imports: [CommonModule, PagesRoutingModule, NgMaterialModule],
 })
 export class PagesModule {}

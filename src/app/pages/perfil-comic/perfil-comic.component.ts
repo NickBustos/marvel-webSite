@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ComicIndividual } from 'src/app/interfaces/comicIndividual.interface';
 import { MarvelService } from '../../services/marvel.service';
 import { Location } from '@angular/common';
@@ -19,9 +19,15 @@ export class PerfilComicComponent implements OnInit {
   constructor(
     private location: Location,
     private comicActivo: ActivatedRoute,
-    private marvelService: MarvelService
+    private marvelService: MarvelService,
+    private navegar: Router
   ) {}
 
+  /**
+   * Esta es una función de Angular que se ejecuta al inicializar el componente.
+   * En este caso, suscribimos el componente a los cambios de la URL para obtener el ID del cómic que se está visualizando y cargar la información
+   * del mismo a través del servicio marvelService.
+   */
   ngOnInit(): void {
     this.comicActivo.params.subscribe((param) => {
       this.marvelService.getComic(param['id']).subscribe((resp) => {
@@ -34,6 +40,12 @@ export class PerfilComicComponent implements OnInit {
     });
   }
 
+  /**
+   * Esta función recibe como parámetro la respuesta del servicio getComic() que se ejecuta en ngOnInit().
+   * Esta función busca la imagen asociada al cómic y devuelve la ruta completa de la imagen.
+   * @param resp
+   * @returns
+   */
   buscarImagen(resp: ComicIndividual) {
     return (
       resp.data.results[0].thumbnail.path +
@@ -42,22 +54,47 @@ export class PerfilComicComponent implements OnInit {
     );
   }
 
+  /**
+   * Esta función recibe la misma respuesta que la función anterior y busca los escritores asociados al cómic.
+   * Devuelve un array con los nombres de los escritores.
+   * @param resp
+   * @returns
+   */
   buscarEscritores(resp: ComicIndividual) {
     return resp.data.results[0].creators.items
       .filter((item) => item.role === 'writer')
       .map((escritores) => escritores.name);
   }
+
+  /**
+   * Esta función recibe la misma respuesta que las anteriores y busca los dibujantes asociados al cómic.
+   * Devuelve un array con los nombres de los dibujantes.
+   * @param resp
+   * @returns
+   */
   buscarDibujantes(resp: ComicIndividual) {
     return resp.data.results[0].creators.items
       .filter((item) => item.role === 'penciller')
       .map((dibujantes) => dibujantes.name);
   }
+
+  /**
+   * Esta función recibe el nombre de un héroe relacionado con el cómic que se está visualizando y lo utiliza para buscar el ID del héroe en la API
+   * de Marvel a través del servicio marvelService.
+   * Una vez obtenido el ID, utiliza el servicio navegar de Angular para navegar a la página de perfil del héroe.
+   * @param name
+   */
   redirectHeroe(name: string) {
     this.marvelService.searchHeroebyName(name).subscribe((resp) => {
-      console.log(resp);
+      console.log(resp.data.results[0].id);
+      this.idHeroe = resp.data.results[0].id;
+      this.navegar.navigate(['perfil', this.idHeroe]);
     });
   }
 
+  /**
+   * Esta función utiliza el servicio location de Angular para volver a la página anterior en el historial del navegador.
+   */
   goBack() {
     this.location.back();
   }

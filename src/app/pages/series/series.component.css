@@ -1,0 +1,19 @@
+:host {
+  margin-top: 70px;
+  width: 100%;
+}
+
+.title {
+  margin-left: 15px;
+}
+
+@media (min-width: 600px) {
+  img {
+    width: 434px;
+    height: 434px;
+  }
+}
+
+p {
+  cursor: pointer;
+}

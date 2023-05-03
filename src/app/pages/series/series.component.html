@@ -1,0 +1,21 @@
+<ng-template #cargando>
+  <mat-grid-list cols="1">
+    <mat-grid-tile>
+      <mat-spinner color="warn"></mat-spinner>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-template>
+<h1 class="title">Listado de comics de: {{ nombreSerie }}</h1>
+<mat-divider></mat-divider>
+
+<div *ngIf="comics; else cargando" class="grid bm-8 p-2 mt-3">
+  <div *ngFor="let comic of comics" class="col-10 sm:col-6 md:col-6 xl:col-3">
+    <p (click)="navegarComic(comic)">{{ comic.name }}</p>
+  </div>
+</div>
+
+<div class="flex d-flex justify-content-center align-items-center">
+  <button mat-button color="warn" class="mt-7" (click)="goBack()">
+    Volver
+  </button>
+</div>

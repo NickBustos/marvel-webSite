@@ -5,6 +5,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ErrorComponent } from './404/error/error.component';
 import { ListadoComicsComponent } from './listado-comics/listado-comics.component';
 import { PerfilComicComponent } from './perfil-comic/perfil-comic.component';
+import { SeriesComponent } from './series/series.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path: 'comics/:page',
         component: ListadoComicsComponent,
+      },
+      {
+        path: 'series/:id',
+        component: SeriesComponent,
       },
       {
         path: 'error',

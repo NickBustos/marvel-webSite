@@ -21,6 +21,11 @@ export class SidebarComponent {
 
   constructor(private marvelService: MarvelService) {}
 
+  /**
+   * searchHeroe(): esta función se encarga de hacer una solicitud a la API de Marvel con el fin de buscar un héroe en particular.
+   * Utiliza el valor de entrada searchInput que se introduce en un campo de entrada de texto.
+   * Luego, actualiza el arreglo resultados con los resultados devueltos por la API.
+   */
   searchHeroe() {
     const value: string = this.searchInput.value || '';
 
@@ -29,6 +34,13 @@ export class SidebarComponent {
     });
   }
 
+  /**
+   * onSelectedOption(): esta función se encarga de asignar el héroe seleccionado al campo selectedHero.
+   * También establece el valor del campo codigoHeroe como el id del héroe seleccionado y establece el valor del campo searchInput como el nombre del
+   * héroe seleccionado.
+   * @param param
+   * @returns
+   */
   onSelectedOption(param: MatAutocompleteSelectedEvent): void {
     if (!param.option.value) {
       return;
@@ -38,6 +50,10 @@ export class SidebarComponent {
     this.searchInput.setValue(param.option.value.name);
   }
 
+  /**
+   * vonSelectedOption(): esta función se encarga de asignar el héroe seleccionado al campo selectedHero.
+   * También establece el valor del campo codigoHeroe como el id del héroe seleccionado y establece el valor del campo searchInput como el nombre del héroe seleccionado.
+   */
   clearSearch() {
     this.searchInput.setValue('');
   }

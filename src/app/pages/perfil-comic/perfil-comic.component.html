@@ -79,7 +79,7 @@
       <ul>
         <li
           *ngFor="let heroe of resultadoComic.data.results[0].characters.items"
-          (click)="redirectHeroe('heroe.name')"
+          (click)="redirectHeroe(heroe.name)"
         >
          
             {{ heroe.name }}

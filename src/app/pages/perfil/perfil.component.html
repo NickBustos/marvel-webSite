@@ -29,10 +29,11 @@
       <p><strong>Comics: </strong></p>
 
       <ul>
-        <li *ngFor="let item of resultadoHeroe.series.items">
-          <a href="{{ item.resourceURI }}{{ api }}">
-            {{ item.name }}
-          </a>
+        <li
+          *ngFor="let item of resultadoHeroe.series.items"
+          (click)="redirectSerie(item.resourceURI)"
+        >
+          {{ item.name }}
         </li>
       </ul>
     </mat-card-footer>

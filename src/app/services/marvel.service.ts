@@ -4,6 +4,7 @@ import { Heroe } from '../interfaces/marvel.interface';
 import { Observable } from 'rxjs';
 import { Comic } from '../interfaces/comicListado.interface';
 import { ComicIndividual } from '../interfaces/comicIndividual.interface';
+import { Series } from '../interfaces/series.interface';
 
 @Injectable({ providedIn: 'root' })
 export class MarvelService {
@@ -16,6 +17,8 @@ export class MarvelService {
 
   private page: number = 0;
   constructor(private httpClient: HttpClient) {}
+
+  /**HEROES**/
 
   getHeroes(numPage: number): Observable<Heroe> {
     return this.httpClient.get<Heroe>(
@@ -37,9 +40,11 @@ export class MarvelService {
 
   searchHeroebyName(name: string): Observable<Heroe> {
     return this.httpClient.get<Heroe>(
-      `${this.baseUrlComic}?name=${name}&ts=1000&apikey=${this.apiKey}`
+      `${this.baseUrlHeroe}?name=${name}&ts=1000&apikey=${this.apiKey}`
     );
   }
+
+  /**COMICS**/
 
   getComics(numPage: number): Observable<Comic> {
     return this.httpClient.get<Comic>(
@@ -49,6 +54,18 @@ export class MarvelService {
   getComic(idComic: string): Observable<ComicIndividual> {
     return this.httpClient.get<ComicIndividual>(
       `${this.baseUrlComic}/${idComic}?&ts=1000&apikey=${this.apiKey}`
+    );
+  }
+
+  /**SERIES**/
+
+  getSeries(urlSeries: string) {
+    return this.httpClient.get<Series>(`${urlSeries}`);
+  }
+
+  getSeriesbyId(id: number) {
+    return this.httpClient.get<Series>(
+      `https://gateway.marvel.com:443/v1/public/series/${id}?ts=1000&apikey=${this.apiKey}`
     );
   }
 }

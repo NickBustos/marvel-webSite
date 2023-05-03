@@ -12,4 +12,8 @@
     text-decoration: none;
     color: #6a6a6a;
   }
+
+  li{
+    cursor: pointer;
+  }
   
