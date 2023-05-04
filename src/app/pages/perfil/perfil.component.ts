@@ -38,7 +38,6 @@ export class PerfilComponent implements OnInit {
           resp.data.results[0].thumbnail.extension;
 
         this.resultadoHeroe = resp.data.results[0];
-        console.log(resp.data.results[0]);
       });
     });
   }
@@ -51,9 +50,9 @@ export class PerfilComponent implements OnInit {
    * @param enlace
    */
   redirectSerie(enlace: string) {
-    //console.log(enlace + '' + this.api);
-    this.enlace = enlace + this.api;
-    this.marvelService.getSeries(this.enlace).subscribe((resp) => {
+    const urlArray = enlace.split('/');
+    const serieId: string = urlArray[urlArray.length - 1];
+    this.marvelService.getSeriesbyId(Number(serieId)).subscribe((resp) => {
       this.navegar.navigate(['series', resp.data.results[0].id]);
     });
   }
